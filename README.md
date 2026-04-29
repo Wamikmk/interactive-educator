@@ -35,7 +35,7 @@ The skill runs in two phases:
 
 **Phase 1  Profiling.** Three or four multiple-choice questions about your prior knowledge, the domain you want the lesson anchored in, and your preferred visual aesthetic. Total time: ~20 seconds.
 
-**Phase 2  Building.** Claude writes a single React JSX file with four screens: **Puzzle → Explore → Name → Challenge**. The artifact renders inline. You manipulate it. The "aha"  if the build went well — happens between screens 2 and 3.
+**Phase 2  Building.** Claude writes a single React JSX file with four screens: **Puzzle → Explore → Name → Challenge**. The artifact renders inline. You manipulate it. The "aha"  if the build went well happens between screens 2 and 3.
 
 If you want to skip profiling, give Claude full context up front: *"/aha eigenvectors — I know matrix multiplication, anchor it in image compression, blueprint aesthetic."* The skill will skip questions it already has answers for.
 
@@ -68,7 +68,7 @@ A few opinions baked into the skill, in case you want to argue with them:
 - **Exactly 4 screens, not "3 to 5."** Flexibility was producing inconsistent artifacts. The Puzzle → Explore → Name → Challenge structure is now mandatory; if a topic needs more, it should be split into separate lessons.
 - **The "aha" must be stated in one sentence before any code is written.** If Claude can't, the scope is wrong and it asks for clarification. This forces the artifact to have a point.
 - **No multiple-choice quizzes inside the artifact.** Verification happens through the visualization itself if you got it, the system visibly resolves; if not, the inconsistency is visible. Quizzes are theater.
-- **Anchor domain shapes scenarios, not just labels.** Choosing "medical testing" for Bayes' theorem means realistic sensitivity/specificity values and screening narratives — not the same artifact with renamed variables.
+- **Anchor domain shapes scenarios, not just labels.** Choosing "medical testing" for Bayes' theorem means realistic sensitivity/specificity values and screening narratives not the same artifact with renamed variables.
 
 ## Contributing
 
