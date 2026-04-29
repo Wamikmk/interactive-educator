@@ -37,7 +37,7 @@ The skill runs in two phases:
 
 **Phase 2  Building.** Claude writes a single React JSX file with four screens: **Puzzle → Explore → Name → Challenge**. The artifact renders inline. You manipulate it. The "aha"  if the build went well happens between screens 2 and 3.
 
-If you want to skip profiling, give Claude full context up front: *"/aha eigenvectors — I know matrix multiplication, anchor it in image compression, blueprint aesthetic."* The skill will skip questions it already has answers for.
+If you want to skip profiling, give Claude full context up front: *"/aha eigenvectors -> I know matrix multiplication, anchor it in image compression, blueprint aesthetic."* The skill will skip questions it already has answers for.
 
 ## What you get
 
