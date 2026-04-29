@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Python (in case you run the skill-creator scripts locally)
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Node (if you ever want to preview JSX locally)
+node_modules/
+dist/
+build/
+
+# Local notes you don't want public
+NOTES.md
+TODO.md
+*.local.md
