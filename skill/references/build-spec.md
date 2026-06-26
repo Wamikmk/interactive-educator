@@ -93,7 +93,12 @@ Now name what they've discovered. Show how the formal definition or equation cap
 Bridge from `MENTAL_MODEL` (if it existed) to the correct model explicitly: "You might have started thinking [their model]. The interaction showed [refined model]. Formally, this is [equation/definition]."
 
 **Screen 4 — CHALLENGE**
-A novel scenario from `ANCHOR_DOMAIN` they haven't seen. The learner applies what they've learned. The visualization itself reveals whether they're right — no multiple choice, no "check answer" buttons. If they got it, the system visibly resolves. If not, the inconsistency is visible and they can iterate.
+A novel scenario from `ANCHOR_DOMAIN` they haven't seen. The learner applies what they've learned. The visualization itself reveals whether they're right. No multiple choice, no "check answer" buttons. If they got it, the system visibly resolves. If not, the inconsistency is visible and they can iterate.
+
+Productive struggle has a ceiling. A learner who has no idea where to start just quits. If they cannot resolve the Challenge, offer a progressive hint behind an explicit "Stuck?" control or a short delay. The first hint directs attention ("notice what happens to X when you change Y"). The second narrows the space ("the relationship is multiplicative, not additive"). Never reveal the result and never show a "correct" banner; the visualization still does the confirming. The hint must not short-circuit discovery for a learner who would have reached it alone.
+
+**Across screens — prefer a persistent visual stage**
+When the concept has one central object (a vector, a curve, a network, a distribution), keep that visualization component mounted across all four screens. Change the prompt, the controls, and the annotations around it, not the picture itself. Three payoffs: the learner never re-orients to a new image, the parameter they set in Explore carries into Name and Challenge, and the heavy visual never remounts. This reinforces that they are seeing one concept four ways, not four topics. Use separate visuals per screen only when the screens genuinely need different pictures.
 
 ## 6. Domain guidance
 
@@ -133,6 +138,8 @@ Derive hover/active states by adjusting opacity or lightness of `accent` and `hi
 
 Apply via inline `style={{ backgroundColor: THEME.surface }}` or by interpolating into className attributes. The theme should feel cohesive and intentional — not a color swap.
 
+**Color cannot be the only channel.** The one-color-per-concept rule above fails for the roughly 8% of male learners with color vision deficiency if two concepts read as red and green. Pair every color-coded meaning with a second cue: shape, label, line style, or position. Keep body text near a 4.5:1 contrast ratio against its surface; muted text on a colored panel often drops below readable. Respect `prefers-reduced-motion`: when it is set, cut decorative animation and snap physics sims to their resting state. This protects the learner's access to the meaning, not just the look.
+
 ## 9. Component architecture — prevents real bugs
 
 **Never define components inside other components.** Every render creates a new function reference; React treats it as a new component type, unmounts the old DOM element, and mounts a fresh one. This kills sliders mid-drag, resets input focus, and breaks ongoing interactions. Define ALL components at the top level of the module.
@@ -148,6 +155,8 @@ Apply via inline `style={{ backgroundColor: THEME.surface }}` or by interpolatin
 **Never use canvas with an absolute-positioned HTML overlay** for click targets. The mapping between canvas logical pixels, CSS display size, and absolute positioning will break on resize or zoom.
 
 **Exception**: Use canvas for dense pixel data (heatmaps, >1000 points). Render once, overlay a transparent SVG on top for interaction. Use `pointerEvents: "none"` on the SVG and attach handlers to the parent container.
+
+**Use Pointer Events, not mouse events, for drag and click.** `onMouseDown` and `onMouseMove` fire unreliably on touch devices and usually trigger scrolling instead of dragging, so drag-based artifacts silently break on phones and tablets. Use `onPointerDown`, `onPointerMove`, `onPointerUp`. Set `style={{ touchAction: 'none' }}` on the draggable SVG so the browser does not steal the gesture for scrolling. Call `e.target.setPointerCapture(e.pointerId)` on pointer down so the drag keeps tracking even if the pointer leaves the element. These artifacts render on mobile; mouse-only handlers are a silent failure there.
 
 ## 11. Performance
 
@@ -171,3 +180,19 @@ Animations must feel physical, not computational:
 Precise language. Define every variable before using it. Short sentences when introducing new ideas. Wonder is earned through insight, not adjectives.
 
 Address the learner at the level indicated by `PRIOR_KNOWLEDGE`. Don't over-explain what they already know. Don't under-explain what they don't.
+
+## 14. Pre-flight check before sharing
+
+Section 4 is a before-you-build list; by the time the file is 400 lines long it is easy to forget half of it. These artifacts fail silently, so run one closing pass before `present_files`. Confirm each item, and fix any that fail before sharing:
+
+- The stated aha is delivered by an interaction, not by a paragraph of text.
+- Every slider, toggle, and control changes something visible and meaningful.
+- All components are defined at module top level; none are nested inside another component.
+- Drag and click use pointer events, and draggable SVGs set `touchAction: 'none'`.
+- No color literals appear outside the `THEME` object.
+- No color carries meaning without a second cue (shape, label, or position).
+- The four learner inputs (prior knowledge, mental model, anchor domain, theme) visibly shaped the build. If the artifact would look the same regardless of the answers, it failed.
+- The Challenge has a progressive hint path for a stuck learner.
+- No `localStorage`/`sessionStorage`/`indexedDB`, no nonexistent libraries, no screen rendering more than 500 SVG elements.
+
+If any item fails, fix it before sharing. This pass is what catches the bugs you cannot see by reading the code.

@@ -58,5 +58,8 @@ Read `references/build-spec.md` in full before writing any code. It contains:
 - The 4-screen structure (Puzzle → Explore → Name → Challenge)
 - Component architecture and coordinate-system rules that prevent specific React bugs
 - Theming, performance, animation, and tone
+- A pre-flight check to run before sharing (these artifacts fail silently)
 
-Then build. The learner's four inputs (prior knowledge, mental model, anchor domain, theme) must shape every screen — if the artifact would look the same regardless of the answers, you haven't used them.
+Then build. The learner's four inputs (prior knowledge, mental model, anchor domain, theme) must shape every screen. If the artifact would look the same regardless of the answers, you haven't used them.
+
+Before sharing, run the pre-flight check in section 14 of `build-spec.md`. These artifacts fail silently, so the closing pass is what catches the bugs you cannot see by reading the code.
