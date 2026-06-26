@@ -33,9 +33,9 @@ If you'd rather inspect before installing, the unpacked skill lives in [`skill/`
 
 The skill runs in two phases:
 
-**Phase 1  Profiling.** Three or four multiple-choice questions about your prior knowledge, the domain you want the lesson anchored in, and your preferred visual aesthetic. Total time: ~20 seconds.
+**Phase 1, Profiling.** Three or four multiple-choice questions about your prior knowledge, the domain you want the lesson anchored in, and your preferred visual aesthetic. Total time: ~20 seconds.
 
-**Phase 2  Building.** Claude writes a single React JSX file with four screens: **Puzzle → Explore → Name → Challenge**. The artifact renders inline. You manipulate it. The "aha"  if the build went well happens between screens 2 and 3.
+**Phase 2, Building.** Claude writes a single React JSX file with four screens: **Puzzle → Explore → Name → Challenge**. The artifact renders inline. You manipulate it. The "aha", if the build went well, happens between screens 2 and 3.
 
 If you want to skip profiling, give Claude full context up front: *"/aha eigenvectors -> I know matrix multiplication, anchor it in image compression, blueprint aesthetic."* The skill will skip questions it already has answers for.
 
@@ -56,8 +56,8 @@ See [`examples/gradientDescent.md`](./examples/gradientDescent.md) for a worked 
 
 The skill ships with two files:
 
-- **[`skill/SKILL.md`](./skill/SKILL.md)** — the entry point Claude reads on every invocation. Defines the trigger, the profiling questions, and points to the build spec.
-- **[`skill/references/build-spec.md`](./skill/references/build-spec.md)**  the full build specification: how to find the "aha" for a topic, environment constraints, the 4-screen structure, component architecture rules that prevent specific React bugs, theming, performance, animation feel.
+- **[`skill/SKILL.md`](./skill/SKILL.md)** is the entry point Claude reads on every invocation. Defines the trigger, the profiling questions, and points to the build spec.
+- **[`skill/references/build-spec.md`](./skill/references/build-spec.md)** is the full build specification: how to find the "aha" for a topic, environment constraints, the 4-screen structure, component architecture rules that prevent specific React bugs, theming, performance, animation feel.
 
 If you want to fork and modify, those are the two files to read.
 
@@ -72,13 +72,13 @@ A few opinions baked into the skill, in case you want to argue with them:
 
 ## Contributing
 
-PRs welcome. Read [`CONTRIBUTING.md`](./CONTRIBUTING.md) first — it covers how to test changes, what kinds of edits tend to be merged, and how the trigger and screen structure are intentionally rigid.
+PRs welcome. Read [`CONTRIBUTING.md`](./CONTRIBUTING.md) first. It covers how to test changes, what kinds of edits tend to be merged, and how the trigger and screen structure are intentionally rigid.
 
 If you've used the skill on a topic where the output was bad, that's the most useful kind of issue to file. Specific failures > general feedback.
 
 ## License
 
-[CC BY 4.0](./LICENSE). Use it, fork it, modify it, build on top of it — just credit this repo.
+[CC BY 4.0](./LICENSE). Use it, fork it, modify it, build on top of it, just credit this repo.
 
 ## Credits
 
